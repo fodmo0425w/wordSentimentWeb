@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Sentiment Analysis</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    
+    <div class="wrapper">
+    <!--背景图片-->
+    <div id="web_bg" style="background-image: url(../static/images/background.jpg);"></div>
+    <!--其他代码 ... -->
+    </div>
+    <header>
+        <div class="container header-container">
+            <div id="brandname">
+                Machine Learning App在线情感分析生成器TrollDetection
+            </div>
+            <h2>情感分析应用程序</h2>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container form-container">
+            <h1>文本情感分析器</h1>
+            <p>Enter Your Message Here to analyze!</p>
+            <form id="sentiment-form">
+                <select id="language-select">
+                    <option value="chinese">让我们说中文</option>
+                    <option value="english">让我们说英文</option>
+                </select>
+                <textarea id="text-input" rows="4" cols="50" placeholder="Enter your text here..."></textarea><br>
+                <button type="button" class="small-button cancel-button">取消</button>
+                <button type="submit" class="small-button">预测 prediction</button>
+            </form>
+            <div id="result" class="result"></div>
+        </div>
+    </main>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="bottom-bar">
+            <div class="container">
+                <small class="copyright col-md-6 col-sm-12 col-xs-12">Copyright © 2024 Based on Troll_Detection Paper / Text Sentiment Analysis</small>
+            </div><!--//container-->
+        </div><!--//bottom-bar-->
+    </footer><!--//footer-->
+
+    <script>
+        $(document).ready(function() {
+            // Handle sentiment analysis form submission
+            $('#sentiment-form').on('submit', function(event) {
+                event.preventDefault();
+                var language = $('#language-select').val();
+                var textInput = $('#text-input').val().trim();
+                if (textInput === "") {
+                    showModal('Please enter some text.', 'error');
+                    return;
+                }
+                $.ajax({
+                    url: '/predict',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ text: textInput, language: language }),
+                    success: function(response) {
+                        var message = 'The text is ' + response.prediction.toLowerCase() + '.';
+                        showModal(message, 'success');
+                    },
+                    error: function(error) {
+                        showModal('Error: ' + error.responseText, 'error');
+                    }
+                });
+            });
+
+            // Handle cancel button click
+            $('.cancel-button').on('click', function() {
+                $('#text-input').val('');
+                $('#language-select').prop('selectedIndex', 0);
+                $('#result').empty();
+            });
+
+            // Show modal with message and type (success/error)
+            function showModal(message, type) {
+                var modal = $('#myModal');
+                var modalMessage = $('#modal-message');
+                modalMessage.text(message);
+                if (type === 'error') {
+                    modalMessage.css('color', 'red');
+                } else {
+                    modalMessage.css('color', 'green');
+                }
+                modal.show();
+
+                // Close the modal when clicking on <span> (x)
+                $('.close').click(function() {
+                    modal.hide();
+                });
+
+                // Close the modal when clicking outside of the modal content
+                window.onclick = function(event) {
+                    if ($(event.target).is(modal)) {
+                        modal.hide();
+                    }
+                };
+            }
+        });
+    </script>
+</body>
+</html>

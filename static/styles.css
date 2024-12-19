@@ -1,0 +1,182 @@
+/* static/styles.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    color: #333;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#brandname {
+    font-size: 24px;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+.main-content {
+    background-image: url('../static/images/background.jpg'); /* 使用本地背景图片 */
+    background-size: cover; /* 或者使用  如果你希望图片完全显示而不被裁剪 */
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* calc(100vh - 120px)调整以适应头部和尾部 */
+    height: 100%; /* 确保内容区域能够扩展 */
+    width:100%;
+    background-attachment: fixed;/* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+}
+
+.form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #4a4a4a; /* 更深的文字颜色 */
+}
+
+select, textarea {
+    width: calc(100% - 22px);
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #f9f9f9; /* 更浅的背景色 */
+}
+
+button.small-button {
+    width: 45%; /* 缩小按钮宽度 */
+    padding: 10px; /* 减少内边距 */
+    background-color: #FF9800; /* 橙色按钮 */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px; /* 减小字体大小 */
+    transition: background-color 0.3s ease;
+    margin-right: 5px; /* 添加右边距 */
+}
+
+button.small-button:hover {
+    background-color: #E67E22; /* 更深的橙色 */
+}
+
+button.cancel-button {
+    background-color: #ddd; /* 浅灰色按钮 */
+    color: #333; /* 较深的文字颜色 */
+}
+
+button.cancel-button:hover {
+    background-color: #bbb; /* 更深的浅灰色 */
+}
+
+select:focus, textarea:focus {
+    border-color: #007bff;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.copyright {
+    font-size: 14px;
+    color: #666;
+}
